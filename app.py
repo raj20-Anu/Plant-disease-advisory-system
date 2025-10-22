@@ -37,7 +37,7 @@ CORS(app,resources={r"/*":{"origins": "*"}})  # allow frontend to call this API
 
 # Load model once at startup
 import tensorflow as tf
-model = tf.keras.models.load_model("exported_model.keras")
+model = tf.keras.models.load_model("./exported_model.keras")
 
 # Class names (same as in your main.py)
 class_names = [
