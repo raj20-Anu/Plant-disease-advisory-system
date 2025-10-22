@@ -38,7 +38,7 @@ CORS(app,resources={r"/*":{"origins": "*"}})  # allow frontend to call this API
 # Load model once at startup
 import tensorflow as tf
 import gdown
-MODEL_PATH = "./exported_model.keras"
+MODEL_PATH = "exported_model.keras"
 FILE_ID = "1VHc85aEhkJgf_OjSgFjR6vDaTC2otjH6"  # <-- replace this with your Google Drive file ID
 
 # Download model if it doesn't exist
