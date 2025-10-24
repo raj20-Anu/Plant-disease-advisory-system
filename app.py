@@ -103,6 +103,8 @@ from deep_translator import GoogleTranslator
 from dotenv import load_dotenv
 # 🗝 Your Groq API key (get it from https://console.groq.com)
 API_KEY = os.getenv("API_KEY")
+VITE_SUPABASE_PUBLISHABLE_KEY=os.getenv("VITE_SUPABASE_PUBLISHABLE_KEY")
+VITE_SUPABASE_URL=os.getenv("VITE_SUPABASE_URL")
 translator = GoogleTranslator()
 
 @app.route('/chat', methods=['POST'])
