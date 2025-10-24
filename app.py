@@ -37,15 +37,7 @@ CORS(app,resources={r"/*":{"origins": "*"}})  # allow frontend to call this API
 
 # Load model once at startup
 import tensorflow as tf
-import gdown
-MODEL_PATH = "exported_model.keras"
-FILE_ID = "1VHc85aEhkJgf_OjSgFjR6vDaTC2otjH6"  # <-- replace this with your Google Drive file ID
-
-# Download model if it doesn't exist
-if not os.path.exists(MODEL_PATH):
-    url = f"https://drive.google.com/uc?id={FILE_ID}"
-    gdown.download(url, MODEL_PATH, quiet=False)
-model = tf.keras.models.load_model(MODEL_PATH)
+model = tf.keras.models.load_model("exported_model.keras")
 
 # Class names (same as in your main.py)
 class_names = [
@@ -108,9 +100,9 @@ def predict():
     })
 from groq import Groq
 from deep_translator import GoogleTranslator
-
+from dotenv import load_dotenv
 # 🗝 Your Groq API key (get it from https://console.groq.com)
-client = Groq(api_key="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")
+API_KEY = os.getenv("API_KEY")
 translator = GoogleTranslator()
 
 @app.route('/chat', methods=['POST'])
