@@ -1,6 +1,7 @@
 In VS Code terminal
-## 1.Install the Requirements
+## 1.Install dependies
 ```bash
+npm install
 pip install -r requirements.txt
 ```
 ## 2. Run the app.py in terminal
