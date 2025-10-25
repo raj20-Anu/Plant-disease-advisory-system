@@ -1,45 +1,20 @@
-from flask import Flask, request, jsonify
+# main.py
+from flask import Flask, request, jsonify, render_template
 import numpy as np
 import keras
 from tensorflow.keras.preprocessing import image
-from flask_cors import CORS
 import os
+from disease_info import get_disease_info
+from chatbot import ask_chatbot
+from flask_cors import CORS
 
-disease_info = {
-    "Pepper,_bell___Bacterial_spot": {
-        "solution": "Use copper-based bactericides weekly. Remove infected leaves and avoid overhead watering.",
-        "precautions": "Plant certified disease-free seeds, rotate crops annually, and sanitize garden tools."
-    },
-    "Tomato___Bacterial_spot": {
-        "solution": "Apply fungicides like chlorothalonil or copper. Remove infected leaves and ensure good airflow.",
-        "precautions": "Avoid overhead watering, mulch around plants, and rotate crops yearly."
-    },
-    "Tomato___Late_blight": {
-        "solution": "Spray with a fungicide containing mancozeb or copper. Destroy infected plants immediately.",
-        "precautions": "Avoid watering leaves, maintain spacing, and remove debris from soil."
-    },
-    "Tomato___Spider_mites Two-spotted_spider_mite": {
-    "solution": "Spray plants with insecticidal soap or neem oil, ensuring thorough coverage under leaves. Introduce natural predators such as ladybugs or predatory mites to control the population.",
-    "precautions": "Avoid excessive nitrogen fertilization which encourages mite outbreaks. Keep the plants well-watered to reduce stress, and regularly inspect the underside of leaves for early signs of webbing or yellow specks."
-},
-    "Apple___Black_rot": {
-        "solution": "Prune and destroy affected leaves and fruit. Apply fungicide at bloom and petal fall stages.",
-        "precautions": "Avoid wet conditions, remove mummified fruit, and maintain air circulation."
-    },
-    "Orange___Haunglongbing_(Citrus_greening)": {
-        "solution": "No cure available. Remove and destroy infected trees. Control psyllid insect vectors.",
-        "precautions": "Plant certified disease-free saplings, monitor regularly, and use insect control nets."
-    }
-}
-# Create Flask app
 app = Flask(__name__)
-CORS(app,resources={r"/*":{"origins": "*"}})  # allow frontend to call this API
+CORS(app, resources={r"/*": {"origins": "*"}})  # allow frontend to call API
 
-# Load model once at startup
-import tensorflow as tf
-model = tf.keras.models.load_model("exported_model.keras")
+# Load Groq-trained model
+model = keras.layers.TFSMLayer("exported_model", call_endpoint="serving_default")
 
-# Class names (same as in your main.py)
+# Class names
 class_names = [
  'Apple___Apple_scab','Apple___Black_rot','Apple___Cedar_apple_rust','Apple___healthy',
  'Blueberry___healthy','Cherry_(including_sour)___Powdery_mildew','Cherry_(including_sour)___healthy',
@@ -58,7 +33,7 @@ class_names = [
 
 @app.route('/')
 def home():
-    return "✅ Flask backend running! Use /predict endpoint."
+    return render_template('index.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -76,72 +51,32 @@ def predict():
     # Load and preprocess image
     img = image.load_img(img_path, target_size=(224, 224))
     img_array = np.expand_dims(image.img_to_array(img), axis=0)
-    
 
     # Predict
-    pred = model.predict(img_array)
+    pred = model(img_array)['dense_2'].numpy()
     pred_class_idx = np.argmax(pred)
     confidence = float(pred[0][pred_class_idx])
     result = class_names[pred_class_idx]
 
     os.remove(img_path)
 
-    # ✅ Get info from dictionary if available
-    info = disease_info.get(result, {
-        "solution": "No solution provided.",
-        "precautions": "No precautions available."
-    })
+    # Get info from dictionary if available
+    info = get_disease_info(result)
 
     return jsonify({
         'class': result,
         'confidence': round(confidence * 100, 2),
-        'solution': info["solution"],
-        'precautions': info["precautions"]
+        'solution': info.get("solution", "No solution provided."),
+        'precautions': info.get("preventive_measures", "No precautions available.")
     })
-from groq import Groq
-from deep_translator import GoogleTranslator
-from dotenv import load_dotenv
-# 🗝 Your Groq API key (get it from https://console.groq.com)
-API_KEY = os.getenv("API_KEY")
-VITE_SUPABASE_PUBLISHABLE_KEY=os.getenv("VITE_SUPABASE_PUBLISHABLE_KEY")
-VITE_SUPABASE_URL=os.getenv("VITE_SUPABASE_URL")
-translator = GoogleTranslator()
 
 @app.route('/chat', methods=['POST'])
 def chat():
-    try:
-        if not request.is_json:
-            return jsonify({"error": "Content-Type must be application/json"}), 415
+    data = request.get_json(force=True)
+    message = data.get("message", "")
+    language = data.get("language", "en")
+    response = ask_chatbot(message, language)
+    return jsonify(response)
 
-        data = request.get_json(force=True)
-        user_message = data.get("message", "")
-        target_lang = data.get("language", "en")
-
-        if not user_message:
-            return jsonify({"error": "Empty message"}), 400
-
-        # Translate input to English
-        translated_input = GoogleTranslator(source='auto', target='en').translate(user_message)
-
-        # 💬 Ask Groq AI (Llama-3 model)
-        completion = client.chat.completions.create(
-            model="llama-3.1-8b-instant",
-            messages=[
-                {"role": "system", "content": "You are a helpful crop disease expert and agriculture assistant."},
-                {"role": "user", "content": translated_input},
-            ]
-        )
-
-        ai_response_en = completion.choices[0].message.content
-
-        # Translate back to target language
-        translated_response = GoogleTranslator(source='en', target=target_lang).translate(ai_response_en)
-
-        return jsonify({"response": translated_response})
-
-    except Exception as e:
-        print("❌ Chat error:", e)
-        return jsonify({"error": str(e)}), 500
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000) 
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000)
