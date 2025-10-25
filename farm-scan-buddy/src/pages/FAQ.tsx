@@ -78,8 +78,8 @@ const FAQ = () => {
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground mb-4">
-            If you couldn't find the answer you were looking for, feel free to use the Q&A feature in the
-            Prediction page or contact our support team.
+            If you couldn't find the answer you were looking for, feel free to use the Chatbot feature in the
+            Prediction page.
           </p>
           <p className="text-sm text-muted-foreground">
             We're continuously updating our FAQ based on user feedback. Your questions help us improve!

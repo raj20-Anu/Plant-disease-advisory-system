@@ -33,7 +33,7 @@ class_names = [
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return "✅ Flask backend running! Use /predict endpoint."
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -66,7 +66,7 @@ def predict():
     return jsonify({
         'class': result,
         'confidence': round(confidence * 100, 2),
-        'solution': info.get("solution", "No solution provided."),
+        'solution': info.get("solutions", "No solution provided."),
         'precautions': info.get("preventive_measures", "No precautions available.")
     })
 
