@@ -7,7 +7,7 @@ It also includes an integrated AI Chatbot for personalized farming advice and a 
 
 <br><br>
 In VS Code terminal
-## 1.Install dependies
+## 1.Install dependencies
 ```bash
 npm install
 pip install -r requirements.txt
