@@ -1,3 +1,11 @@
+
+### 🌾 CropCare – AI-Powered Plant Disease Detection System
+
+CropCare is an intelligent web application that helps farmers and agricultural users detect plant diseases with 93% test accuracy using AI and deep learning. The system analyzes leaf images with clean backgrounds to identify diseases and provides expert treatment recommendations and preventive measures.
+
+It also includes an integrated AI Chatbot for personalized farming advice and a Google Translation widget for multilingual accessibility, ensuring a seamless experience for users worldwide.
+
+<br><br>
 In VS Code terminal
 ## 1.Install dependies
 ```bash
