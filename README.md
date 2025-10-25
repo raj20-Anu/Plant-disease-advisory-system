@@ -1,13 +1,13 @@
 In VS Code terminal
-##1. Install the Requirements
+##Install the Requirements
 ```bash
 pip install -r requirements.txt
 ```
-##2. Run the app.py in terminal
+##Run the app.py in terminal
 ```bash
 python app.py
 ```
-##3. Open new PowerShell
+##Open new PowerShell
 ```bash
 cd farm-scan-buddy
 npm run dev
