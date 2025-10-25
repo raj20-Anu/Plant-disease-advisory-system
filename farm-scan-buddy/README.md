@@ -1,73 +1,67 @@
-# Welcome to your Lovable project
+CropCare Project
 
-## Project info
+Project Info
 
-**URL**: https://lovable.dev/projects/e00abc41-c958-44f7-8cc2-407e340b0a9e
+Description:
+CropCare is an AI-powered crop disease detection application. Upload leaf images to get instant diagnoses along with solutions and preventive measures.
 
-## How can I edit this code?
+How to Edit This Code
 
-There are several ways of editing your application.
+There are several ways to edit your application:
 
-**Use Lovable**
+1. Using Your Preferred IDE
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e00abc41-c958-44f7-8cc2-407e340b0a9e) and start prompting.
+You can work locally using any IDE, such as VS Code.
 
-Changes made via Lovable will be committed automatically to this repo.
+Steps:
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+# Step 1: Clone the repository using the Git URL
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
+# Step 2: Navigate to the project directory
 cd <YOUR_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Step 3: Install dependencies
+npm install   # for frontend
+pip install -r requirements.txt   # for backend
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Step 4: Start the development servers
+# Backend (Flask)
+python main.py
+
+# Frontend (if using Vite/React)
 npm run dev
-```
 
-**Edit a file directly in GitHub**
+2. Edit Files Directly on GitHub
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- Navigate to the desired file(s) in the repository.  
+- Click the "Edit" button (pencil icon) to modify the file.  
+- Commit your changes directly to the repository.
 
-**Use GitHub Codespaces**
+3. Using GitHub Codespaces
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- Navigate to your repository on GitHub.  
+- Click the "Code" button and select the "Codespaces" tab.  
+- Click "New codespace" to launch a full development environment in the browser.  
+- Edit files and commit changes from within Codespaces.
 
-## What technologies are used for this project?
+Technologies Used
 
 This project is built with:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- Python (Flask)  
+- TensorFlow / Keras  
+- Vite + React  
+- TypeScript  
+- Tailwind CSS  
+- shadcn-ui  
 
-## How can I deploy this project?
+How to Deploy
 
-Simply open [Lovable](https://lovable.dev/projects/e00abc41-c958-44f7-8cc2-407e340b0a9e) and click on Share -> Publish.
+- Deploy the backend on any server that supports Python (Flask).  
+- Deploy the frontend on any static site host (Vercel, Netlify, etc.).  
+- Ensure the frontend is configured to call the backend API endpoints (/predict and /chat).
 
-## Can I connect a custom domain to my Lovable project?
+Optional: Custom Domain
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+If deploying the frontend, you can connect a custom domain through your hosting provider.

@@ -8,3 +8,4 @@ deep-translator
 groq
 gunicorn
 gdown
+python-dotenv
