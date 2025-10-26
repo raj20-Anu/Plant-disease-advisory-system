@@ -7,6 +7,8 @@ import os
 from disease_info import get_disease_info
 from chatbot import ask_chatbot
 from flask_cors import CORS
+from markdown import markdown
+
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})  # allow frontend to call API
@@ -76,7 +78,13 @@ def chat():
     message = data.get("message", "")
     language = data.get("language", "en")
     response = ask_chatbot(message, language)
-    return jsonify(response)
+    markdown_text = response.get("response", "")
+    
+    # Convert markdown (**bold**, ## headings, etc.) to HTML
+    html_response = markdown(markdown_text)
+    
+    return jsonify({"response": html_response})
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
