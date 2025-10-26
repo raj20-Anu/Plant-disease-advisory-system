@@ -100,6 +100,8 @@ const Prediction = () => {
 };
   };
 
+
+  
  const handleSendMessage = async () => {
     if (!chatMessage.trim()) return;
 
@@ -133,6 +135,8 @@ const Prediction = () => {
       ]);
     }
   };
+
+
 
   return (
     <div className="space-y-6 pb-8">
@@ -262,7 +266,14 @@ const Prediction = () => {
                           : "bg-card mr-8"
                       }`}
                     >
-                      <p className="text-sm">{msg.content}</p>
+                      {msg.role === "user" ? (
+                         <p className="text-sm">{msg.content}</p>
+                      ) : (
+                        <div
+                          className="text-sm"
+                          dangerouslySetInnerHTML={{ __html: msg.content }}
+                        />
+                      )}
                     </div>
                   ))
                 )}
