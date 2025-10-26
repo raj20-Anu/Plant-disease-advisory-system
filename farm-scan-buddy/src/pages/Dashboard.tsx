@@ -7,6 +7,7 @@ import { Home, FlaskConical, HelpCircle, Leaf, LogOut, Menu, X } from "lucide-re
 import { useEffect, useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
+
 const Dashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -44,13 +45,15 @@ const Dashboard = () => {
     { path: "/dashboard/prediction", icon: FlaskConical, label: "Prediction" },
     { path: "/dashboard/faq", icon: HelpCircle, label: "FAQ" },
   ];
-
+  
   const NavLinks = ({ mobile = false }) => (
     <>
       {navItems.map((item) => (
         <Button
           key={item.path}
-          variant={location.pathname === item.path ? "default" : "ghost"}
+          variant={location.pathname === item.path || 
+          (item.path === "/dashboard/home" && location.pathname === "/dashboard")
+          ? "default": "ghost"}
           className={`${mobile ? "w-full justify-start" : ""}`}
           onClick={() => {
             navigate(item.path);
