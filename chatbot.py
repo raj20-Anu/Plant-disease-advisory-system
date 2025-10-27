@@ -26,8 +26,9 @@ def ask_chatbot(user_message, target_lang="en"):
     completion = client.chat.completions.create(
         model="llama-3.1-8b-instant",
         messages=[
-            {"role": "system", "content": "You are a helpful crop disease expert and agriculture assistant. "
-                "Always give structured, easy-to-read answers using markdown format. "
+            {"role": "system", "content": "You are a helpful crop disease expert."
+            " Give short, direct answers. Avoid long biographies or extra sections."
+                "Always give easy-to-read answers using markdown format. "
                 "Use clear headings (##), numbered lists, and bullet points where needed. "
                 "Highlight key terms in **bold**, and use short paragraphs for readability."},
             {"role": "user", "content": translated_input},

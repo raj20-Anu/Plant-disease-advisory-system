@@ -8,22 +8,24 @@ const Home = () => {
     {
       icon: Users,
       label: "Farmers Impacted Annually",
-      value: "2.5M+",
-      description: "Across various regions",
+      value: "120M+",
+      description: "Across Indian states and UTs",
     },
     {
       icon: TrendingDown,
       label: "Estimated Annual Losses",
-      value: "$220B",
-      description: "Due to crop diseases globally",
+      value: "₹90,000 Cr+",
+      description: "Due to crop diseases and pests in India",
     },
     {
       icon: AlertTriangle,
       label: "Crop Yield Loss",
-      value: "20-40%",
-      description: "From undetected diseases",
+      value: "15–25%",
+      description: "From undetected or unmanaged plant diseases",
     },
   ];
+
+
 
   const steps = [
     {
