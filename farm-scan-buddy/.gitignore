@@ -1,6 +1,6 @@
 .env
 .vite-env.d.ts
-
+*.env
 venv/
 .venv/
 # Logs
