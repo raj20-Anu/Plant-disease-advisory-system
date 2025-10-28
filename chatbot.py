@@ -4,8 +4,8 @@ from deep_translator import GoogleTranslator
 from dotenv import load_dotenv
 import os
 
-# Load environment variables
-load_dotenv()
+# Explicitly load the .env file inside farm-scan-buddy
+load_dotenv(dotenv_path="farm-scan-buddy/.env")
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 if not GROQ_API_KEY:
@@ -14,6 +14,7 @@ if not GROQ_API_KEY:
 # Initialize Groq client
 client = Groq(api_key=GROQ_API_KEY)
 translator = GoogleTranslator()
+
 
 def ask_chatbot(user_message, target_lang="en"):
     if not user_message:
