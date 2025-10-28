@@ -9,13 +9,20 @@ It also includes an integrated AI Chatbot for personalized farming advice and a 
 In VS Code terminal
 ## 1.Install dependencies
 ```bash
-npm install
 pip install -r requirements.txt
 ```
 ## 2. Insertion of API Key
-In your project root (same folder as app.py), create a new file and name it .env
-Open .env in a text editor and add your keys in this format:
-GROQ_API_KEY=your_groq_api_key_here
+Inside your project root search for farm-scan-buddy, inside which create a new file and name it .env
+Open .env and add your keys in the format given below,
+[![To create Supabase keys go to](https://supabase.com/)]
+[![To create Groq API keys go to](https://groq.com/)]
+<br>
+VITE_SUPABASE_PROJECT_ID="your_supabase_id"
+VITE_SUPABASE_PUBLISHABLE_KEY="your_supabase_key"
+VITE_SUPABASE_URL="your_supabase_url"
+VITE_API_UR="your_url"
+
+GROQ_API_KEY=your_api_key
 
 ## 3. Run the app.py in terminal
 ```bash
@@ -24,6 +31,7 @@ python app.py
 ## 4. Open new PowerShell
 ```bash
 cd farm-scan-buddy
+npm install
 npm run dev
 ```
 If you get Scripts error give 
