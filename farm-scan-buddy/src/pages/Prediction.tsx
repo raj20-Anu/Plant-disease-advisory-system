@@ -10,21 +10,22 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Textarea } from "@/components/ui/textarea";
 
 const crops = [
-  "Tomato",
-  "Cherry",
-  "Apple",
-  "Pepper",
-  "Potato",
-  "Blueberry",
-  "Corn",
-  "Grape",
-  "Orange",
-  "Peach",
-  "Raspberry",
-  "Soybean",
-  "Squash",
-  "Strawberry",
+  "🍅 Tomato",
+  "🍒 Cherry",
+  "🍎 Apple",
+  "🌶️ Pepper",
+  "🥔 Potato",
+  "🫐 Blueberry",
+  "🌽 Corn",
+  "🍇 Grape",
+  "🍊 Orange",
+  "🍑 Peach",
+  "🍓 Raspberry",
+  "🌱 Soybean",
+  "🎃 Squash",
+  "🍓 Strawberry",
 ];
+
 
 const Prediction = () => {
   const [selectedCrop, setSelectedCrop] = useState("");
@@ -147,28 +148,51 @@ const Prediction = () => {
         </p>
       </div>
 
+
+ {/* chnages to button type */}
       <div className="grid lg:grid-cols-2 gap-6">
         <Card className="border-2">
-          <CardHeader>
-            <CardTitle>Upload & Analyze</CardTitle>
-            <CardDescription>Select your crop and upload a clear image of the leaf</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label>Select Crop</Label>
-              <Select value={selectedCrop} onValueChange={setSelectedCrop}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Choose a crop..." />
-                </SelectTrigger>
-                <SelectContent>
-                  {crops.map((crop) => (
-                    <SelectItem key={crop} value={crop}>
-                      {crop}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+           <CardHeader>
+             <CardTitle>Upload & Analyze</CardTitle>
+               <CardDescription>
+                  Select your crop and upload a clear image of the leaf
+               </CardDescription>
+            </CardHeader>
+
+            <CardContent className="space-y-4">
+               <div className="space-y-2">
+                 <Label>Select Crop</Label>
+
+                {/* Crop Buttons (Translation-safe) */}
+                 <div className="flex flex-wrap justify-start gap-3 mt-3">
+                   {crops.map((crop) => (
+                    <Button
+                      key={crop}
+                      variant={selectedCrop === crop ? "default" : "outline"}
+                      className={`flex-1 sm:flex-none min-w-[100px] px-5 py-3 rounded-xl text-base font-semibold 
+          transition-all duration-200 text-white ${
+                      selectedCrop === crop
+                         ? "bg-green-600 text-white hover:bg-green-700"
+                         : "bg-green-700 text-white border border-green-800 hover:bg-green-500"
+                    }`}
+                    onClick={() => setSelectedCrop(crop)}
+                   >
+              {crop}
+            </Button>
+          ))}
+        </div>
+
+        {/* Show selected crop */}
+        {selectedCrop && (
+          <p className="mt-3 text-sm text-muted-foreground">
+            Selected Crop:{" "}
+            <span className="font-semibold text-green-700">
+              {selectedCrop}
+            </span>
+          </p>
+        )}
+      </div>
+  {/*upload part*/}
 
             <div className="space-y-2">
               <Label htmlFor="image-upload">Upload Leaf Image</Label>
