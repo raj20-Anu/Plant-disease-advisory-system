@@ -1,6 +1,8 @@
 .env
 .vite-env.d.ts
 *.env
+farm-scan-buddy/.env
+
 venv/
 .venv/
 # Logs
