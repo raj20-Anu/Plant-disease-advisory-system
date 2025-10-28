@@ -12,15 +12,15 @@ In VS Code terminal
 pip install -r requirements.txt
 ```
 ## 2. Insertion of API Key
-Inside your project root search for farm-scan-buddy, inside which create a new file and name it .env
-Open .env and add your keys in the format given below,
-[![To create Supabase keys go to](https://supabase.com/)]
-[![To create Groq API keys go to](https://groq.com/)]
+Inside your project root search for farm-scan-buddy, inside which create a new file and name it .env<br>
+Open .env and add your keys in the format given below,<br>
+- Create **Supabase** keys → [https://supabase.com](https://supabase.com/)<br>
+- Create **Groq** API keys → [https://console.groq.com](https://console.groq.com/)
 <br>
-VITE_SUPABASE_PROJECT_ID="your_supabase_id"
-VITE_SUPABASE_PUBLISHABLE_KEY="your_supabase_key"
-VITE_SUPABASE_URL="your_supabase_url"
-VITE_API_UR="your_url"
+VITE_SUPABASE_PROJECT_ID="your_supabase_id"<br>
+VITE_SUPABASE_PUBLISHABLE_KEY="your_supabase_key"<br>
+VITE_SUPABASE_URL="your_supabase_url"<br>
+VITE_API_UR="your_url"<br><br>
 
 GROQ_API_KEY=your_api_key
 
