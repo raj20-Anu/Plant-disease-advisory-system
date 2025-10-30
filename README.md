@@ -17,7 +17,7 @@ Open .env and add your keys in the format given below,<br>
 - Create **Supabase** keys → [https://supabase.com](https://supabase.com/)<br>
 - Create **Groq** API keys → [https://console.groq.com](https://console.groq.com/)
 <br>
-## Supabase connection instructions<br>
+## Supabase connection instructions
 inside cd farm-scan-buddy
 ```bash
 npx supabase login
