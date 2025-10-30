@@ -22,6 +22,7 @@ Inside cd farm-scan-buddy
 ```bash
 npx supabase login
 ```
+yes
 ```bash
 npx supabase link --project-ref <your-project-ref>
 ```
