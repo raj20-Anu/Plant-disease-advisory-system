@@ -28,7 +28,7 @@ npx supabase link --project-ref <your-project-ref>
 ```
 check the website url at the top<br>
 eg:https://xyzcompanyname.supabase.co/project/abcdef12<br>
-The part after /project/ (like abcdef12) is your project ref.
+The part after /project/ (like abcdef12) is your project ref.<br>
 ```bash
 npx supabase db push
 ```
@@ -39,7 +39,7 @@ npx supabase db push
 VITE_SUPABASE_PROJECT_ID="your_supabase_id"<br>
 VITE_SUPABASE_PUBLISHABLE_KEY="your_supabase_key"<br>
 VITE_SUPABASE_URL="your_supabase_url"<br>
-VITE_API_UR="your_url"<br>
+VITE_API_URL="your_url"<br>
 
 GROQ_API_KEY=your_api_key
 
