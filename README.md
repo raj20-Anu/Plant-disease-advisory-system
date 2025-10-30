@@ -16,7 +16,8 @@ Inside your project root search for farm-scan-buddy, inside which create a new f
 Open .env and add your keys in the format given below,<br>
 - Create **Supabase** keys → [https://supabase.com](https://supabase.com/)<br>
 - Create **Groq** API keys → [https://console.groq.com](https://console.groq.com/)
-<br>
+  <br>
+  
 ## Supabase connection instructions
 Inside cd farm-scan-buddy
 ```bash
