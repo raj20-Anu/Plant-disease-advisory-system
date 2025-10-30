@@ -16,7 +16,38 @@
     <meta name="twitter:site" content="@cropcare" />
     <style>#lovable-badge {
       display: none
-      !important; }</style>
+      !important; }
+  
+/* Hide Google Translate tooltip popup */
+.goog-tooltip,
+.goog-tooltip:hover {
+  display: none !important;
+}
+
+/* Hide the frame that appears at the top */
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+/* Prevent body from shifting down due to banner */
+body {
+  top: 0px !important;
+}
+
+/* Hide the 'See original' pop-up when hovering */
+#goog-gt-tt,
+.goog-te-balloon-frame {
+  display: none !important;
+}
+
+/* Disable text selection translation pop-up */
+.goog-text-highlight {
+  background: none !important;
+  box-shadow: none !important;
+}
+
+</style>
+
   </head>
 
   <body>

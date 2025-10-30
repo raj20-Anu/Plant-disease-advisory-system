@@ -21,29 +21,49 @@ const Profile = () => {
   }, []);
 
   const fetchProfile = async () => {
-    try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user) {
-        const { data, error } = await supabase
-          .from("profiles")
-          .select("*")
-          .eq("id", user.id)
-          .single();
+  try {
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    if (userError) throw userError;
+    if (!user) throw new Error("No user found");
 
-        if (error) throw error;
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("*")
+      .eq("id", user.id)
+      .single();
 
-        setProfile(data);
-        setFullName(data?.full_name || "");
-        setPhoneNumber(data?.phone_number || "");
-      }
-    } catch (error: any) {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
+    if (error && error.code !== "PGRST116") throw error; // ignore "no rows found"
+
+    // Combine Supabase auth email + profile data
+    const combinedProfile = {
+      ...data,
+      id: user.id,
+      email: user.email, // <-- add email from auth
+    };
+
+    setProfile(combinedProfile);
+    setFullName(combinedProfile.full_name || "");
+    setPhoneNumber(combinedProfile.phone_number || "");
+  } catch (error) {
+    toast({
+      title: "Error",
+      description: error.message,
+      variant: "destructive",
+    });
+  }
+};
+useEffect(() => {
+  fetchProfile();
+
+  const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+    if (session?.user) {
+      fetchProfile(); // re-fetch when user logs in/out
     }
-  };
+  });
+
+  return () => listener.subscription.unsubscribe();
+}, []);
+
 
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
