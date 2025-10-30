@@ -18,7 +18,7 @@ Open .env and add your keys in the format given below,<br>
 - Create **Groq** API keys → [https://console.groq.com](https://console.groq.com/)
 <br>
 ## Supabase connection instructions
-inside cd farm-scan-buddy
+Inside cd farm-scan-buddy
 ```bash
 npx supabase login
 ```
@@ -38,7 +38,7 @@ npx supabase db push
 VITE_SUPABASE_PROJECT_ID="your_supabase_id"<br>
 VITE_SUPABASE_PUBLISHABLE_KEY="your_supabase_key"<br>
 VITE_SUPABASE_URL="your_supabase_url"<br>
-VITE_API_UR="your_url"<br><br>
+VITE_API_UR="your_url"<br>
 
 GROQ_API_KEY=your_api_key
 
