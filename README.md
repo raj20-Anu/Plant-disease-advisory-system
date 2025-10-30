@@ -27,8 +27,8 @@ yes
 ```bash
 npx supabase link --project-ref <your-project-ref>
 ```
-check the website url at the top<br>
-eg:https://xyzcompanyname.supabase.co/project/abcdef12<br>
+Check the website url of supabase after logging in<br>
+eg: https://xyzcompanyname.supabase.co/project/abcdef12<br>
 The part after /project/ (like abcdef12) is your project ref.<br>
 ```bash
 npx supabase db push
@@ -45,6 +45,8 @@ VITE_API_URL="your_url"<br>
 GROQ_API_KEY=your_api_key
 
 <br>
+
+## Example
 in .env <br>
 VITE_SUPABASE_PROJECT_ID is your project-ref (like abcdef12)<br>
 VITE_SUPABASE_PUBLISHABLE_KEY is the api key provided by supabase <br>
