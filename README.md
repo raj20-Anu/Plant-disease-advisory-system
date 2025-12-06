@@ -67,4 +67,6 @@ If you get Scripts error give
 ```bash
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 ```
-## Finish
+## Issues
+If you find any bugs or have suggestions, feel free to open an issue.
+
